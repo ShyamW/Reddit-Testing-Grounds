@@ -1,7 +1,5 @@
 import praw
 import ConfigParser
-import pprint
-from Comment import Comment
 
 """Wrapping PRAW API to fully understand it"""
 class reddit():
@@ -33,7 +31,7 @@ class reddit():
 	def read_login_info(self):
 		config = ConfigParser.ConfigParser()
 		config.read('../data/config.ini')
-		self.CLIENT_ID = config.get('API_INFO', 'id')
+		self.client_id = config.get('API_INFO', 'id')
 		self.CLIENT_SECRET = config.get('API_INFO', 'secret')
 		self.PASSWORD = config.get('API_INFO', 'password')
 		self.USER_AGENT = config.get('API_INFO', 'user_agent')
@@ -48,29 +46,17 @@ class reddit():
 		                              password=self.PASSWORD, user_agent=self.USER_AGENT, username=self.USERNAME)
 
 	"""
-	Processes a reddit post
-	"""
-	def process_submission(self, submission):
-		print submission.title
-		print submission.score
-		print submission.id
-		print submission.url
-		print submission.author
-		comments = submission.comments.list()
-		for comment in comments:
-			Comment(comment).print_results()
-
-	"""
 	fetches {@code data_count} hot posts from {@code subreddit}.
 	"""
 	def fetch_data(self, subreddit, data_count):
-		submissions = self.reddit_api.subreddit(subreddit).new(limit=data_count)
-		print submissions
-		for submission in submissions:
-			self.process_submission(submission)
-
+		submissions = self.reddit_api.subreddit(subreddit).hot(limit=data_count)
+		for x in submissions:
+			print x.title
+			print str(x)
+			print x
+			print type(x)
 
 
 api = reddit()
 api.login()
-api.fetch_data(subreddit='OSU', data_count=1)
+api.fetch_data(subreddit='OSU', data_count='2')
