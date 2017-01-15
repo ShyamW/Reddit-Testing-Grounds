@@ -1,0 +1,8 @@
+[API_INFO]
+id = APPLICATION ID GOES HERE
+secret  = SECRET API KEY GOES HERE
+password = PASSWORD GOES HERE
+user_agent = OFFICIAL APPLICATION DESCRIPTION GOES HERE
+username = REDDIT USERNAME GOES HERE
+
+note: rename file as config.ini extension (this is gitignored)
