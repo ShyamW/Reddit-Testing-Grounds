@@ -45,8 +45,8 @@ class reddit():
     """Processes the comment tree"""
     def process_comments(self, comments, indent):
         for top_level_comments in comments:
-            #Comment(comment).print_results()
-            print '\t' * indent + str(top_level_comments.author).encode('utf-8')
+            Comment(top_level_comments).print_results(indent)
+            #print '\t' * indent + str(top_level_comments.author).encode('utf-8')
             # recursively process nested comments
             self.process_comments(top_level_comments.replies, indent+1)
 

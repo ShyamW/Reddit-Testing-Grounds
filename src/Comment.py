@@ -13,7 +13,7 @@ class Comment():
 		self.parent_id = str(comment.parent_id)
 
 
-	def print_results(self):
-		print "\tAuthor:" + "\tu/" + self.author + "\tParent ID:" + self.parent_id + "\t\tScore:" + self.score
-		print "\n" + str(self.content.encode('utf-8'))
+	def print_results(self, indent):
+		print "\t"*indent + "Author:" + "\tu/" + self.author + "\tParent ID:" + self.parent_id + "\t\tScore:" + self.score
+		print "\t"*indent + str(self.content.encode('utf-8')).rstrip('\n')
 		print "-" * 50
