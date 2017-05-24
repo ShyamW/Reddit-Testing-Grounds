@@ -42,6 +42,15 @@ class reddit():
             print "You need to insert your own values in data/config.ini"
             exit()
 
+    """Processes the comment tree"""
+    def process_comments(self, comments, indent):
+        for top_level_comments in comments:
+            #Comment(comment).print_results()
+            print '\t' * indent + str(top_level_comments.author).encode('utf-8')
+            # recursively process nested comments
+            self.process_comments(top_level_comments.replies, indent+1)
+
+
 
     """
     Processes a reddit post
@@ -53,15 +62,15 @@ class reddit():
         print 'Url: ' + str(submission.url)
         print 'Author: ' + str(submission.author)
         """Print all the comments in the thread"""
+        print "-" * 50
         comments = submission.comments.list()
-        for comment in comments:
-            Comment(comment).print_results()
+        self.process_comments(comments, indent=0)
 
     """
     fetches {@code data_count} hot posts from {@code subreddit}.
     """
     def fetch_data(self, subreddit, data_count):
-        submissions = self.reddit_api.subreddit(subreddit).new(limit=data_count)
+        submissions = self.reddit_api.subreddit(subreddit).hot(limit=data_count)
         """Submissions is a list"""
         for submission in submissions:
             self.process_submission(submission)
@@ -75,7 +84,7 @@ class reddit():
                                       password=self.PASSWORD, user_agent=self.USER_AGENT, username=self.USERNAME)
 
 
-
-api = reddit()
-api.login()
-api.fetch_data(subreddit='OSU', data_count=1)
+if __name__ == '__main__':
+    api = reddit()
+    api.login()
+    api.fetch_data(subreddit='OSU', data_count=1)
