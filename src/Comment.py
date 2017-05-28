@@ -15,5 +15,5 @@ class Comment():
 
 	def print_results(self, indent):
 		print "\t"*indent + "Author:" + "\tu/" + self.author + "\tParent ID:" + self.parent_id + "\t\tScore:" + self.score
-		print "\t"*indent + str(self.content.encode('utf-8')).rstrip('\n')
+		print "\t"*indent + str(self.content.encode('utf-8')).replace('\n', '')
 		print "-" * 50
