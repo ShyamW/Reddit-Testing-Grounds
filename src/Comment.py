@@ -32,8 +32,6 @@ class Comment():
         self.reddit_comment.reply(message)
 
     def print_results(self, indent):
-
-        print self.reddit_comment.author
         # a = self.reddit_api.submission(
         print "\t" * indent + "Author:" + "\tu/" + str(self.reddit_comment.author) + "\tParent ID:" + \
               str(self.reddit_comment.parent_id) + "\t\tScore:" + str(self.reddit_comment.score)

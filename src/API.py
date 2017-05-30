@@ -2,6 +2,7 @@ import praw
 import ConfigParser
 import pprint
 from Comment import Comment
+from author import author
 from Post import Post
 
 """Wrapping PRAW API to fully understand it"""
@@ -90,3 +91,4 @@ if __name__ == '__main__':
     api = reddit()
     api.login()
     api.fetch_data(subreddit='OSU', data_count=1)
+    print "!" * 99
